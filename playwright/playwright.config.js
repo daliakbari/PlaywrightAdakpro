@@ -6,7 +6,22 @@ const { devices } = require('@playwright/test');
  * https://github.com/motdotla/dotenv
  */
 // require('dotenv').config();
-
+const RPconfig = {
+  apiKey: 'y9W6BXn765ypeaMFpSafQwopVrg',
+  endpoint: 'http://192.168.2.185:8080/api/v1',
+  project: 'adak_personal',
+  launch: 'playwright adakkube',
+  attributes: [
+    {
+      key: 'key',
+      value: 'value',
+    },
+    {
+      value: 'value',
+    },
+  ],
+  description: 'Your launch description',
+};
 
 /**
  * @see https://playwright.dev/docs/test-configuration
@@ -32,9 +47,7 @@ const config = {
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [
-    ['html'],
-  ],
+  reporter: [['@reportportal/agent-js-playwright', RPconfig]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
